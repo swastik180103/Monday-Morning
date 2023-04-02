@@ -1,0 +1,35 @@
+const http=require('http')
+const fs=require('fs')
+const filecontent=fs.readFileSync()
+
+const server=http.createServer((req,res) =>
+{
+    const{userid}=req.params;
+    const users=JSON.parse(fs.readFileSync('users.json','utf-8'));
+    const user=users[userid];
+    if(user)
+    {
+        res.json(user);
+    }
+    else{
+        res.status(404).json9({message:'User not found'});
+    }
+});
+app.get('*', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('MM.json', 'utf8'));
+    const userList = Object.values(users);
+    const html = `
+      <html>
+        <head>
+          <title>Users</title>
+        </head>
+        <body>
+          <h1>Users</h1>
+          <ul>
+            ${userList.map((user) => `<li>${user.name} (${user.email})</li>`).join('')}
+          </ul>
+        </body>
+      </html>
+      `;
+  res.send
+})
